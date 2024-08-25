@@ -21,6 +21,7 @@ import moment from 'moment'
 import { db } from '/utils/db'
 import { MockInterview } from '/utils/schema'
 import { v4 as uuidv4 } from 'uuid';
+import { useRouter } from 'next/navigation'
 
 
 
@@ -32,6 +33,7 @@ function AddNewInterview() {
   const[jobExperience,setJobExperience]=useState();
   const[loading,setLoading]=useState(false);
   const[JsonResponse, setJsonResponse]=useState([]);
+  const router = useRouter();
   const {user}=useUser();
 
 const onSubmit= async (e)=>{
@@ -62,12 +64,14 @@ const onSubmit= async (e)=>{
     if(resp)
     {
       setOpenDailog(false);
+      router.push('/dashboard/interview/'+resp[0]?.mockId)
     }
   }
   else{
-    console.log("error");
+    console.log("ERROR");
   }
     setLoading(false);
+    
 }
 
   return (
