@@ -1,25 +1,52 @@
 "use client"
+import Webcam from 'react-webcam'
 import { db } from '/utils/db'
 import { MockInterview } from '/utils/schema'
 import { eq } from 'drizzle-orm'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { WebcamIcon } from 'lucide-react'
+import {Button} from "/components/ui/Button"
 
 function Interview({params}) {
 
+
+  const [interviewData,setInterviewData]=useState(0);
+  const [webCamEnabled,setWebCamEnabled]=useState(false);
 useEffect(()=>{
     console.log(params.interviewid)
     GetInterviewDetails();
 },[])
 
+// Used to get interview details by mockid 
+
 const GetInterviewDetails=async()=>{
     const result=await db.select().from(MockInterview)
     .where(eq(MockInterview.mockId,params.interviewid))
     
-      console.log("Found records:", result);
+      setInterviewData(result[0]);
 }
 
   return (
-    <div>Interview</div>
+    <div className='my-10 flex justify-center flex-col items-center'>
+      <h2 className='font-bold text-4xl'>Lets Get Started</h2>
+    <div>
+      {webCamEnabled? <Webcam 
+      onUserMedia={()=>setWebCamEnabled(true)}
+      onUserMediaError={()=>setWebCamEnabled(false)}
+      mirrored={true}
+      style={{
+        height:300,
+        width:300
+      }}
+      />
+      :
+      <>
+      <WebcamIcon className='h-72 w-full my-7 p-20 bg-secondary rounded-lg border'/>
+      <Button onClick={()=>setWebCamEnabled(true)}>Enable Web Cam and Microphone</Button>
+      </>
+  }
+    </div>
+    </div>
   )
 }
 
