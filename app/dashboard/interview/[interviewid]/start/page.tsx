@@ -3,6 +3,7 @@
 // import { db } from '../../../../../utils/db'
 import { db } from '/utils/db'
 import QuestionsSection from './_components/QuestionsSection'
+import RecordAnswerSection from './_components/RecordAnswerSection'
 // import { MockInterview } from '../../../../../utils/schema'
 import { MockInterview } from '/utils/schema'
 import React, { useEffect, useState } from 'react'
@@ -13,7 +14,7 @@ function StartInterview({params}) {
 
     const [interviewData,setInterviewData]=useState();
     const[mockInterviewQuestion,setMockInterviewQuestion]=useState();
-    const [activeQuestionIndex,setActiveQuestionIndex]=useState();
+    const [activeQuestionIndex,setActiveQuestionIndex]=useState(0);
 
         useEffect(()=>{
             GetInterviewDetails();
@@ -36,12 +37,13 @@ function StartInterview({params}) {
        <div className='grid grid-cols-span-1 md:grid-cols-2'>
 
         {/* Questions ..... */}
-        <QuestionsSection  mockInterviewQuestion={mockInterviewQuestion} />
+        <QuestionsSection  
+          mockInterviewQuestion={mockInterviewQuestion} 
+          activeQuestionIndex={activeQuestionIndex} 
+        />
 
         {/* videoans..... */}
-        <div>
-
-        </div>
+       <RecordAnswerSection/>
 
        </div>
     </div>
