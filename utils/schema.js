@@ -11,15 +11,15 @@ export const MockInterview=pgTable('mockInterview',{
     mockId:varchar('mockId').notNull()  
 })
 
-// export const UserAnswer=pgTable( 'userAnswer', {
-//     id:serial('id').primaryKey() ,
-//     mockIdRef:varchar('mockld').notNult() ,
-//     question:varchar('question').notNutt() ,
-//     correctAns:text ('correctAns') ,
-//     userAns:text('userAns') ,
-//     feedback:text ('feedback'),
-//     rating:varchar('rating') ,
-//     userEmail:varchar( 'userEmail' ) ,
-//     createdAt:varchar( 'createdAt' ) ,
+export const UserAnswer=pgTable( 'userAnswer', {
+    id:serial('id').primaryKey(),
+    mockIdRef:varchar('mockld').notNull(),
+    question:varchar('question').notNull(),
+    correctAns:text ('correctAns'),
+    userAns:text('userAns'),
+    feedback:text ('feedback'),
+    rating:varchar('rating'),
+    userEmail:varchar('userEmail'),
+    createdAt:varchar('createdAt'),
 
-// })
+})
