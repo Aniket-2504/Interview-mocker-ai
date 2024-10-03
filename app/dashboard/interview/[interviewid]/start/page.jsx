@@ -27,17 +27,12 @@ function StartInterview({params}) {
         const GetInterviewDetails=async()=>{
             const result=await db.select().from(MockInterview)
             .where(eq(MockInterview.mockId,params.interviewid))
-            
-
-            if (result && result.length > 0) {
+     
             const jsonMockResp=JSON.parse(result[0].jsonMockResp)
             console.log(jsonMockResp)
             setMockInterviewQuestion(jsonMockResp);
             setInterviewData(result[0]);
-            }
-            else {
-              console.error('No interview data found.');
-            }
+                       
         }
 
 

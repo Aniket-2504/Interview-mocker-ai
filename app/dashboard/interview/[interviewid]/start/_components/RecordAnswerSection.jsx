@@ -7,11 +7,12 @@ import useSpeechToText from 'react-hook-speech-to-text';
 import { Mic } from 'lucide-react';
 import { toast } from 'sonner';
 import { chatSession } from '/utils/GeminiAIModal'
-import { UserAnswer } from '../../../../../../utils/schema';
-import { db } from '../../../../../../utils/db';
+// import { UserAnswer } from '../../../../../../utils/schema';
+// import { db } from '../../../../../../utils/db';
 import { useUser } from '@clerk/nextjs';
 import moment from 'moment';
-// import { db } from 'utils/db'
+import { db } from '@/utils/db';
+import { UserAnswer } from '@/utils/schema';
 
 function RecordAnswerSection({mockInterviewQuestion,activeQuestionIndex,interviewData}) {
   const [userAnswer,setUserAnswer]=useState('');

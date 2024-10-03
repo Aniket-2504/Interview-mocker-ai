@@ -11,10 +11,15 @@ function Feedback({params}) {
        GetFeedback();
     },[])
   const GetFeedback=async()=>{
+    
+
       const result=await db.select()
       .from(UserAnswer)
       .where(eq(UserAnswer.mockIdRef,params.interviewId))
       .orderBy(UserAnswer.id);
+
+      console.log('Interview ID:', params.interviewId);
+      
       console.log(result);
   }
 
